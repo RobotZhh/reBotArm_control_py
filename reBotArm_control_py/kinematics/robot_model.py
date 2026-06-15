@@ -24,7 +24,7 @@ def _hw_config() -> dict:
     if _hw_cfg_cache is not None:
         return _hw_cfg_cache
 
-    hw_yaml = "rebotarm_rs.yaml"
+    hw_yaml = ""
     if _global_cfg.exists():
         global_data = yaml.safe_load(_global_cfg.read_text()) or {}
         hw_yaml = global_data.get("hardware_yaml", hw_yaml)
@@ -91,8 +91,6 @@ def get_all_frame_names(model: pin.Model) -> List[str]:
 def pad_q_for_model(model: pin.Model, q: np.ndarray, controlled_joints: int | None = None) -> np.ndarray:
     nq = model.nq
     n_ctrl = controlled_joints if controlled_joints is not None else nq
-    if q.shape[0] >= nq:
-        return q
     padded = np.zeros(nq)
     padded[:min(q.shape[0], n_ctrl)] = q[:min(q.shape[0], n_ctrl)]
     return padded
