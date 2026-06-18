@@ -11,6 +11,7 @@
 # Kinematics config (URDF path, end-effector frame)
 
 urdf_path: "urdf/reBot-DevArm_fixend_description/urdf/reBot-DevArm_fixend.urdf"
+# urdf_path: "urdf/prima_one/urdf/12345.urdf"
 end_effector_frame: "end_link"
 
 channel: /dev/ttyACM0
